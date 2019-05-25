@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel testing 2
+                    Laravel testing 23
                 </div>
 
                 <div class="links">
