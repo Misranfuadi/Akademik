@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PagesController@homepage');
+Route::get('about', 'PagesController@about');
+
+Route::get('siswa','SiswaController@index');
+Route::get('siswa/{siswa}', 'SiswaController@show');
+Route::get('siswa/create', 'SiswaController@create');
+Route::post('siswa', 'SiswaController@store');
