@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
 use App\Siswa;
 
 class SiswaController extends Controller
@@ -31,7 +32,18 @@ class SiswaController extends Controller
 
     public function store(Request $request)
     {
-        Siswa::create($request->all());
+        $input = $request->all();
+        $validator = Validator::make($input,[
+            'nisn' => 'required|string|size:4|unique:siswa,nisn',
+            'nama_siswa' => 'required|string|max:100',
+            'tanggal_lahir' => 'required|date',
+            'jenis_kelamin' => 'required|in:L,P',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('siswa/create')->withInput()->withErrors($validator);
+        }
+        Siswa::create($input);
         return redirect('siswa');
     }
 
