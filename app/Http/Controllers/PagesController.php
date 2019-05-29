@@ -12,7 +12,7 @@ class PagesController extends Controller
     }
     public function about()
     {
-        $halaman = 'about';
-        return view('pages.about', compact('halaman'));
+
+        return view('pages.about' );
     }
 }

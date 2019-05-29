@@ -8,6 +8,7 @@
 
 </head>
 <body>
+
     @include('navbar')
     <div class="container-fluid">
         @yield('main')
