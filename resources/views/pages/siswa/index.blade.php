@@ -23,7 +23,19 @@
                             <td>{{ $siswa->nama_siswa }}</td>
                             <td>{{ $siswa->tanggal_lahir }}</td>
                             <td>{{ $siswa->jenis_kelamin }}</td>
-                            <td>{{ link_to('siswa/'.$siswa->id,'Detail',['class'=>'btn btn-info btn-sm']) }}</td>
+                            <td>
+                                <div class="box-button">
+                                    {{ link_to('siswa/'.$siswa->id,'Detail',['class'=>'btn btn-info btn-sm']) }}
+                                </div>
+                                <div class="box-button">
+                                    {{ link_to('siswa/'.$siswa->id.'/edit','Edit',['class'=>'btn btn-warning btn-sm']) }}
+                                </div>
+                                <div class="box-button">
+                                    {!! Form::open(['method'=> 'Delete','action'=>['SiswaController@destroy',$siswa->id]]) !!}
+                                    {!! Form::submit('Delete',['class'=> 'btn btn-danger btn-sm']) !!}
+                                    {!! Form::close() !!}
+                                </div>
+                            </td>
                         </tr>
                       @endforeach
                     </tbody>

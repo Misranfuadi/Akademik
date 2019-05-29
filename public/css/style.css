@@ -17,3 +17,7 @@ body{
     text-align: center;
     padding-top: 10px;
 }
+
+.box-button{
+    display: inline-block;
+}
