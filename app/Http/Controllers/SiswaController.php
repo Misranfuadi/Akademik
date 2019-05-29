@@ -15,6 +15,7 @@ class SiswaController extends Controller
 
         return view('siswa.index',compact('halaman', 'siswa_list','jumlah_siswa'));
     }
+
     public function create()
     {
         $halaman = 'siswa';
@@ -30,6 +31,7 @@ class SiswaController extends Controller
 
     public function store(Request $request)
     {
-
+        Siswa::create($request->all());
+        return redirect('siswa');
     }
 }
