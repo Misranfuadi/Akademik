@@ -16,7 +16,7 @@
                       </tr>
                       <tr>
                           <th>Tgl Lahir</th>
-                          <td>{{ $siswa->tanggal_lahir }}</td>
+                          <td>{{ $siswa->tanggal_lahir->format('d-m-Y') }}</td>
                       </tr>
                         <th>Gender</th>
                         <td>{{ $siswa->jenis_kelamin }}</td>
