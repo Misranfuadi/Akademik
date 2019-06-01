@@ -12,7 +12,8 @@ class Siswa extends Model
       'nisn',
       'nama_siswa',
       'tanggal_lahir',
-      'jenis_kelamin'
+      'jenis_kelamin',
+      'id_kelas'
     ];
     protected $dates=['tanggal_lahir'];
 
@@ -24,5 +25,10 @@ class Siswa extends Model
     public function telepon()
     {
         return $this->hasOne('App\Telepon','id_siswa');
+    }
+
+    public function kelas()
+    {
+        return $this->belongsTo('App\kelas', 'id_kelas');
     }
 }

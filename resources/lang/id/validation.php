@@ -127,8 +127,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'tanggal_lahir' => [
+            'before' => 'Isian Tanggal Lahir harus tanggal pada 5 tahun lalu.',
         ],
     ],
 
@@ -148,6 +148,7 @@ return [
         'nama_siswa' => 'Nama',
         'tanggal_lahir' => 'Tanggal Lahir',
         'jenis_kelamin' => 'Jenis Kelamin',
+        'id_kelas' => 'Kelas'
 
     ],
 ];

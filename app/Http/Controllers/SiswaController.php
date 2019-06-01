@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Validator;
 use App\Siswa;
 use App\Telepon;
+use App\Kelas;
 
 class SiswaController extends Controller
 {
@@ -21,8 +22,8 @@ class SiswaController extends Controller
 
     public function create()
     {
-
-        return view('pages.siswa.create');
+        $list_kelas = Kelas::pluck('nama_kelas','id');
+        return view('pages.siswa.create',compact('list_kelas'));
     }
 
     public function show($id)
@@ -37,9 +38,11 @@ class SiswaController extends Controller
         $validator = Validator::make($input,[
             'nisn' => 'required|string|size:4|unique:siswa,nisn',
             'nama_siswa' => 'required|string|max:100',
-            'tanggal_lahir' => 'required|date',
+            'tanggal_lahir' => 'required|date|before:5 years ago',
             'jenis_kelamin' => 'required|in:L,P',
-            'nomor_telepon' => 'sometimes|nullable|numeric|digits_between:10,15|unique:telepon,nomor_telepon'
+            'nomor_telepon' => 'nullable|numeric|digits_between:10,15|unique:telepon,nomor_telepon',
+            'id_kelas'  => 'required',
+
         ]);
 
         if ($validator->fails()) {
@@ -56,8 +59,9 @@ class SiswaController extends Controller
     {
         $siswa = Siswa::findOrFail($id);
         $siswa->nomor_telepon = $siswa->telepon->nomor_telepon;
+        $list_kelas = Kelas::pluck('nama_kelas','id');
 
-        return view('pages.siswa.edit',compact('siswa'));
+        return view('pages.siswa.edit',compact('siswa','list_kelas'));
     }
 
     public function update($id,Request $request)
@@ -67,10 +71,11 @@ class SiswaController extends Controller
         $validator = Validator::make($input,[
             'nisn' => 'required|string|size:4|unique:siswa,nisn,' .$request->input('id'),
             'nama_siswa' => 'required|string|max:100',
-            'tanggal_lahir' => 'required|date',
+            'tanggal_lahir' => 'required|date|before:5 years ago',
             'jenis_kelamin' => 'required|in:L,P',
-            'nomor_telepon' => 'sometimes|numeric|digits_between:10,15
+            'nomor_telepon' => 'nullable|numeric|digits_between:10,15
                                 |unique:telepon,nomor_telepon,'.$request->input('id').',id_siswa',
+            'id_kelas'  => 'required',
         ]);
 
         if ($validator->fails()) {
