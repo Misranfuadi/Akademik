@@ -25,7 +25,7 @@
                                     <td>{{ $siswa->nama_siswa }}</td>
                                     <td>{{ $siswa->tanggal_lahir->format('d-m-Y') }}</td>
                                     <td>{{ $siswa->jenis_kelamin }}</td>
-                                    <td>{{ !empty($siswa->telepon_nomor_telepon) ? $siswa->telepon_nomor_telepon: '-' }}</td>
+                                    <td>{{ !empty($siswa->telepon->nomor_telepon) ? $siswa->telepon->nomor_telepon: '-' }}</td>
                                     <td>
                                         <div class="box-button">
                                             {{ link_to('siswa/'.$siswa->id,'Detail',['class'=>'btn btn-info btn-sm']) }}

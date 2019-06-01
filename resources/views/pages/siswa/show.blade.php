@@ -23,7 +23,7 @@
                       </tr>
                       </tr>
                         <th>Telepon</th>
-                        <td>{{ !empty($siswa->telepon_nomor_telepon) ? $siswa->telepon_nomor_telepon: '-' }}</td>
+                        <td>{{ !empty($siswa->telepon->nomor_telepon) ? $siswa->telepon->nomor_telepon: '-' }}</td>
                       </tr>
                 </table>
             </div>

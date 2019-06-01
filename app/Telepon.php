@@ -12,7 +12,7 @@ class Telepon extends Model
 
     protected $fillable =[
         'id_siswa',
-        'nomor_telepon'
+        'nomor_telepon',
     ];
 
     public function siswa()
