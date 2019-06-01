@@ -38,18 +38,23 @@ class SiswaController extends Controller
             'nama_siswa' => 'required|string|max:100',
             'tanggal_lahir' => 'required|date',
             'jenis_kelamin' => 'required|in:L,P',
+            'nomor_telepon' => 'sometimes|numeric|digits_between:10,15|unique:telepon,nomor_telepon'
         ]);
 
         if ($validator->fails()) {
             return redirect('siswa/create')->withInput()->withErrors($validator);
         }
         Siswa::create($input);
+        $telepon = new Telepon;
+        $telepon->nomor_telepon = $request->input('nomor_telepon');
+        $siswa->telepon()->save($telepon);
         return redirect('siswa');
     }
 
     public function edit($id)
     {
         $siswa = Siswa::findOrFail($id);
+        $siswa->nomor_telepon = $siswa->telepon->nomor_telepon;
         return view('pages.siswa.edit',compact('siswa'));
     }
 
@@ -62,12 +67,17 @@ class SiswaController extends Controller
             'nama_siswa' => 'required|string|max:100',
             'tanggal_lahir' => 'required|date',
             'jenis_kelamin' => 'required|in:L,P',
+            'nomor_telepon' => 'sometimes|numeric|digits_between:10,15|unique:telepon,nomor_telepon'
         ]);
 
         if ($validator->fails()) {
             return redirect('siswa/'.$id.'/edit')->withInput()->withErrors($validator);
         }
         $siswa->update($request->all());
+
+        $telepon = $siswa->telepon;
+        $telepon->nomor_telepon = $request->input('nomor_telepon');
+        $siswa->telepon()->save($telepon);
         return redirect('siswa');
     }
 

@@ -14,6 +14,7 @@
                                 <th>Nama</th>
                                 <th>Tgl Lahir</th>
                                 <th>Gender</th>
+                                <th>Telepon</th>
                                 <th><a href="siswa/create" class="btn btn-primary btn-sm">Tambah</a></th>
                               </tr>
                             </thead>
@@ -24,6 +25,7 @@
                                     <td>{{ $siswa->nama_siswa }}</td>
                                     <td>{{ $siswa->tanggal_lahir->format('d-m-Y') }}</td>
                                     <td>{{ $siswa->jenis_kelamin }}</td>
+                                    <td>{{ !empty($siswa->telepon_nomor_telepon) ? $siswa->telepon_nomor_telepon: '-' }}</td>
                                     <td>
                                         <div class="box-button">
                                             {{ link_to('siswa/'.$siswa->id,'Detail',['class'=>'btn btn-info btn-sm']) }}

@@ -36,5 +36,12 @@
     @enderror
 </div>
 <div class="form-group">
+        {!! Form::label ('nomor_telepon','Nomor Telepon:',['class'=>'control-label']) !!}
+        {!! Form::text ('nomor_telepon',null,['class'=>'form-control']) !!}
+        @error('nomor_telepon')
+        <div class="bg-danger text-light">{{ $message }}</div>
+        @enderror
+    </div>
+<div class="form-group">
     {!! Form::submit($submitButtonText,['class'=>'btn btn-primary form-control']) !!}
 </div>
