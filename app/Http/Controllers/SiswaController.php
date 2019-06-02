@@ -24,9 +24,8 @@ class SiswaController extends Controller
         return view('pages.siswa.create');
     }
 
-    public function show($id)
+    public function show(Siswa $siswa)
     {
-        $siswa = Siswa::findOrFail($id);
         return view('pages.siswa.show',compact('siswa'));
     }
 
@@ -45,16 +44,14 @@ class SiswaController extends Controller
         return redirect('siswa');
     }
 
-    public function edit($id)
+    public function edit(Siswa $siswa)
     {
-        $siswa = Siswa::findOrFail($id);
         $siswa->nomor_telepon = $siswa->telepon->nomor_telepon;
          return view('pages.siswa.edit',compact('siswa'));
     }
 
-    public function update($id,SiswaRequest $request)
+    public function update(Siswa $siswa,SiswaRequest $request)
     {
-        $siswa = Siswa::findOrFail($id);
 
         //update data siswa
         $siswa->update($request->all());
@@ -68,9 +65,8 @@ class SiswaController extends Controller
         return redirect('siswa');
     }
 
-    public function destroy($id)
+    public function destroy(Siswa $siswa)
     {
-        $siswa = Siswa::findOrFail($id);
         $siswa->delete();
         return redirect('siswa');
     }
