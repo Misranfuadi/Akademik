@@ -17,6 +17,17 @@
     @enderror
 </div>
 <div class="form-group">
+    {!! Form::label('id_kelas', 'Kelas:',['class'=>'control-label']) !!}
+    @if (count($list_kelas)>0)
+        {!! Form::select('id_kelas', $list_kelas, null,['class'=>'form-control','id'=>'id_kelas','placeholder'=>'Pilih Kelas']) !!}
+    @else
+        {!! Form::text('id_kelas','Tidak ada kelas',['class'=>'form-control','disabled']) !!}
+    @endif
+    @error('id_kelas')
+    <div class="bg-danger text-light">{{ $message }}</div>
+    @enderror
+</div>
+<div class="form-group">
     {!! Form::label ('tanggal_lahir','Tanggal Lahir:',['class'=>'control-label']) !!}
     {!! Form::date ('tanggal_lahir', !empty($siswa)?$siswa->tanggal_lahir->format('Y-m-d'):null,['class'=>'form-control']) !!}
     @error('tanggal_lahir')
@@ -43,16 +54,18 @@
     @enderror
 </div>
 <div class="form-group">
-    {!! Form::label('id_kelas', 'Kelas:',['class'=>'control-label']) !!}
-    @if (count($list_kelas)>0)
-        {!! Form::select('id_kelas', $list_kelas, null,['class'=>'form-control','id'=>'id_kelas','placeholder'=>'Pilih Kelas']) !!}
+    {!! Form::label ('hobi_siswa','Hobi:',['class'=>'control-label']) !!}
+    @if (count($list_hobi)>0)
+        @foreach ($list_hobi as $key => $value)
+            <div class="checkbox">
+                <label> {!! Form::checkbox('hobi_siswa[]',$key, null) !!}{{ $value }}</label>
+            </div>
+        @endforeach
     @else
-        {!! Form::text('id_kelas','Tidak ada kelas',['class'=>'form-control','disabled']) !!}
+        {!! Form::text('hobi','Tidak ada hobi',['class'=>'form-control','disabled']) !!}
     @endif
-    @error('id_kelas')
-    <div class="bg-danger text-light">{{ $message }}</div>
-    @enderror
 </div>
+
 <div class="form-group">
     {!! Form::submit($submitButtonText,['class'=>'btn btn-primary form-control']) !!}
 </div>

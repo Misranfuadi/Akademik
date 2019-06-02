@@ -22,6 +22,11 @@ class Siswa extends Model
         return ucwords($nama_siswa);
     }
 
+    public function getHobiSiswaAttribute()
+    {
+        return $this->hobi->pluck('id')->toArray();
+    }
+
     public function telepon()
     {
         return $this->hasOne('App\Telepon','id_siswa');
@@ -30,5 +35,10 @@ class Siswa extends Model
     public function kelas()
     {
         return $this->belongsTo('App\kelas', 'id_kelas');
+    }
+
+    public function hobi()
+    {
+        return $this->belongsToMany('App\Hobi','hobi_siswa','id_siswa','id_hobi')->withTimeStamps();
     }
 }
