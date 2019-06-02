@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-//use Validator;
-use App\Siswa;
-use App\Telepon;
-use App\Kelas;
-use App\Hobi;
+use App\Http\Requests\SiswaRequest;
+use App\Siswa,App\Telepon;
 
 class SiswaController extends Controller
 {
@@ -33,24 +30,18 @@ class SiswaController extends Controller
         return view('pages.siswa.show',compact('siswa'));
     }
 
-    public function store(Request $request)
+    public function store(SiswaRequest $request)
     {
         $input = $request->all();
-        $this->validate($request,[
-            'nisn' => 'required|string|size:4|unique:siswa,nisn',
-            'nama_siswa' => 'required|string|max:100',
-            'tanggal_lahir' => 'required|date|before:5 years ago',
-            'jenis_kelamin' => 'required|in:L,P',
-            'nomor_telepon' => 'nullable|numeric|digits_between:10,15|unique:telepon,nomor_telepon',
-            'id_kelas'  => 'required',
-
-        ]);
-
+        //simpan data siswa
         $siswa = Siswa::create($input);
+        //simpan data telepon
         $telepon = new Telepon;
         $telepon->nomor_telepon = $request->input('nomor_telepon');
         $siswa->telepon()->save($telepon);
+        //simpan data hobi
         $siswa->hobi()->attach($request->input('hobi_siswa'));
+
         return redirect('siswa');
     }
 
@@ -61,26 +52,17 @@ class SiswaController extends Controller
          return view('pages.siswa.edit',compact('siswa'));
     }
 
-    public function update($id,Request $request)
+    public function update($id,SiswaRequest $request)
     {
         $siswa = Siswa::findOrFail($id);
-        $this->validate($request,[
-            'nisn' => 'required|string|size:4|unique:siswa,nisn,' .$request->input('id'),
-            'nama_siswa' => 'required|string|max:100',
-            'tanggal_lahir' => 'required|date|before:5 years ago',
-            'jenis_kelamin' => 'required|in:L,P',
-            'nomor_telepon' => 'nullable|numeric|digits_between:10,15
-                                |unique:telepon,nomor_telepon,'.$request->input('id').',id_siswa',
-            'id_kelas'  => 'required',
-        ]);
 
-
+        //update data siswa
         $siswa->update($request->all());
-
+        //Update data telepon
         $telepon = $siswa->telepon;
         $telepon->nomor_telepon = $request->input('nomor_telepon');
         $siswa->telepon()->save($telepon);
-
+         //Update data hobi
         $siswa->hobi()->sync($request->input('hobi_siswa'));
 
         return redirect('siswa');
