@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Validator;
+//use Validator;
 use App\Siswa;
 use App\Telepon;
 use App\Kelas;
@@ -37,7 +37,7 @@ class SiswaController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $validator = Validator::make($input,[
+        $this->validate($request,[
             'nisn' => 'required|string|size:4|unique:siswa,nisn',
             'nama_siswa' => 'required|string|max:100',
             'tanggal_lahir' => 'required|date|before:5 years ago',
@@ -47,9 +47,6 @@ class SiswaController extends Controller
 
         ]);
 
-        if ($validator->fails()) {
-            return redirect('siswa/create')->withInput()->withErrors($validator);
-        }
         $siswa = Siswa::create($input);
         $telepon = new Telepon;
         $telepon->nomor_telepon = $request->input('nomor_telepon');
@@ -71,8 +68,7 @@ class SiswaController extends Controller
     public function update($id,Request $request)
     {
         $siswa = Siswa::findOrFail($id);
-        $input = $request->all();
-        $validator = Validator::make($input,[
+        $this->validate($request,[
             'nisn' => 'required|string|size:4|unique:siswa,nisn,' .$request->input('id'),
             'nama_siswa' => 'required|string|max:100',
             'tanggal_lahir' => 'required|date|before:5 years ago',
@@ -82,9 +78,7 @@ class SiswaController extends Controller
             'id_kelas'  => 'required',
         ]);
 
-        if ($validator->fails()) {
-            return redirect('siswa/'.$id.'/edit')->withInput()->withErrors($validator);
-        }
+
         $siswa->update($request->all());
 
         $telepon = $siswa->telepon;
