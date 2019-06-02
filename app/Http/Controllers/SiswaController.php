@@ -23,9 +23,8 @@ class SiswaController extends Controller
 
     public function create()
     {
-        $list_kelas = Kelas::pluck('nama_kelas','id');
-        $list_hobi = Hobi::pluck('nama_hobi','id');
-        return view('pages.siswa.create',compact('list_kelas','list_hobi'));
+
+        return view('pages.siswa.create');
     }
 
     public function show($id)
@@ -59,10 +58,7 @@ class SiswaController extends Controller
     {
         $siswa = Siswa::findOrFail($id);
         $siswa->nomor_telepon = $siswa->telepon->nomor_telepon;
-        $list_kelas = Kelas::pluck('nama_kelas','id');
-        $list_hobi = Hobi::pluck('nama_hobi','id');
-
-        return view('pages.siswa.edit',compact('siswa','list_kelas','list_hobi'));
+         return view('pages.siswa.edit',compact('siswa'));
     }
 
     public function update($id,Request $request)
