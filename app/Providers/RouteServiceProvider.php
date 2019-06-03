@@ -26,7 +26,6 @@ class RouteServiceProvider extends ServiceProvider
         //
         parent::boot();
         Route::model('siswa', 'App\Siswa');
-        //$router->model('siswa','App\Siswa');
     }
 
     /**

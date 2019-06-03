@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\SiswaRequest;
+use storage;
 use App\Siswa,App\Telepon;
 
 class SiswaController extends Controller
@@ -32,6 +33,17 @@ class SiswaController extends Controller
     public function store(SiswaRequest $request)
     {
         $input = $request->all();
+
+        if ($request->hasFile('foto')) {
+            $foto = $request->file('foto');
+            $ext = $foto->getClientOriginalExtension();
+            if ($request->file('foto')->isValid()) {
+                $foto_name = date('Ymdhis').".$ext";
+                $upload_path = 'fotoupload';
+                $request->file('foto')->move($upload_path,$foto_name);
+                $input['foto'] = $foto_name;
+            }
+        }
         //simpan data siswa
         $siswa = Siswa::create($input);
         //simpan data telepon

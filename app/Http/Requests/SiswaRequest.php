@@ -34,11 +34,12 @@ class SiswaRequest extends FormRequest
         }
         return [
                 'nisn' => $nisn_rules,
-                'nama_siswa' => 'required|string|max:100',
+                'nama_siswa'    => 'required|string|max:100',
                 'tanggal_lahir' => 'required|date|before:5 years ago',
                 'jenis_kelamin' => 'required|in:L,P',
                 'nomor_telepon' => $telepon_rules,
-                'id_kelas'  => 'required',
+                'id_kelas'      => 'required',
+                'foto'          => 'nullable|image|max:500|mimes:jpeg,jpg,bmp,png',
         ];
     }
 }
