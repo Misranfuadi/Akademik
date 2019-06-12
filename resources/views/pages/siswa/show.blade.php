@@ -41,12 +41,12 @@
                         <th>Foto</th>
                           <td>
                               @if (isset($siswa->foto))
-                                  <img src="{{ asset('fotoupload/'.$siswa->foto)}}" class="img-thumbnail w-25 p-3">
+                                  <img src="{{ asset('fotoupload/'.$siswa->foto)}}" class="img-thumbnail" style="width:150px;height:160px;">
                               @else
                                     @if ($siswa->jenis_kelamin == 'L')
-                                        <img src="{{ asset('fotoupload/dummymale.png')}}" class="img-thumbnail w-25 p-3"  >
+                                        <img src="{{ asset('fotoupload/dummymale.png')}}" class="img-thumbnail" style="width:150px;height:160px;">
                                     @else
-                                        <img src="{{ asset('fotoupload/dummyfemale.jpg')}}" class="img-thumbnail w-25 p-3">
+                                        <img src="{{ asset('fotoupload/dummyfemale.jpg')}}" class="img-thumbnail " style="width:150px;height:160px;">
                                     @endif
                               @endif
                           </td>

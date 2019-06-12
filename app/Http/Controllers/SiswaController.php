@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
 use App\Http\Requests\SiswaRequest;
-use storage;
+use Illuminate\Support\Facades\Storage;
 use App\Siswa,App\Telepon;
+
 
 class SiswaController extends Controller
 {
@@ -35,14 +36,9 @@ class SiswaController extends Controller
         $input = $request->all();
 
         if ($request->hasFile('foto')) {
-            $foto = $request->file('foto');
-            $ext = $foto->getClientOriginalExtension();
-            if ($request->file('foto')->isValid()) {
-                $foto_name = date('Ymdhis').".$ext";
-                $upload_path = 'fotoupload';
-                $request->file('foto')->move($upload_path,$foto_name);
-                $input['foto'] = $foto_name;
-            }
+           if ($request->hasFile('foto')) {
+               $input['foto'] = $this->uploadFoto($request);
+           }
         }
         //simpan data siswa
         $siswa = Siswa::create($input);
@@ -64,9 +60,14 @@ class SiswaController extends Controller
 
     public function update(Siswa $siswa,SiswaRequest $request)
     {
+        $input = $request->all();
 
+        if ($request->hasFile('foto')) {
+           $this->hapusFoto($siswa);
+           $input['foto']= $this->uploadFoto($request);
+        }
         //update data siswa
-        $siswa->update($request->all());
+        $siswa->update($input);
         //Update data telepon
         $telepon = $siswa->telepon;
         $telepon->nomor_telepon = $request->input('nomor_telepon');
@@ -77,8 +78,36 @@ class SiswaController extends Controller
         return redirect('siswa');
     }
 
+    public function uploadFoto(SiswaRequest $request)
+    {
+        $foto = $request->file('foto');
+        $ext = $foto->getClientOriginalExtension();
+
+        if ($request->file('foto')->isValid()) {
+            $foto_name = date('YmdHis').".$ext";
+            $upload_path = 'fotoupload';
+            $request->file('foto')->move($upload_path,$foto_name);
+            return $foto_name;
+        }
+        return false;
+    }
+
+    public function hapusFoto(Siswa $siswa)
+    {
+        $exists = Storage::disk('foto')->exists($siswa->foto);
+
+        if (isset($siswa->foto)&& $exists) {
+            $delete = Storage::disk('foto')->delete($siswa->foto);
+            if ($delete){
+                return true;
+            }
+            return false;
+        }
+    }
+
     public function destroy(Siswa $siswa)
     {
+        $this->hapusFoto($siswa);
         $siswa->delete();
         return redirect('siswa');
     }
