@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\SiswaRequest;
-use Illuminate\Support\Facades\Storage;
+use Storage,Session;
 use App\Siswa,App\Telepon;
 
 
@@ -48,6 +48,7 @@ class SiswaController extends Controller
         $siswa->telepon()->save($telepon);
         //simpan data hobi
         $siswa->hobi()->attach($request->input('hobi_siswa'));
+        Session::flash('flsh_massage', 'Data siswa berhasil disimpan.');
 
         return redirect('siswa');
     }
@@ -74,6 +75,7 @@ class SiswaController extends Controller
         $siswa->telepon()->save($telepon);
          //Update data hobi
         $siswa->hobi()->sync($request->input('hobi_siswa'));
+        Session::flash('flsh_massage', 'Data siswa berhasil diupdate.');
 
         return redirect('siswa');
     }
@@ -109,6 +111,8 @@ class SiswaController extends Controller
     {
         $this->hapusFoto($siswa);
         $siswa->delete();
+        Session::flash('flsh_massage', 'Data siswa berhasil disimpan.');
+        Session::flash('penting', true);
         return redirect('siswa');
     }
 }

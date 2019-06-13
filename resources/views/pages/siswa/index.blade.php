@@ -4,6 +4,12 @@
     <div class="row justify-content-md-center py-md-3">
         <div class="card col-md-8" id="siswa">
             <h4 class="card-header bg-dark text-light mb-3">Siswa</h4>
+            @if ($message = Session::get('flsh_massage'))
+              <div class="alert alert-success alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                  <strong>{{ $message }}</strong>
+              </div>
+            @endif
             <div class="card-body">
                 @if (!empty($siswa_list))
                     <div class="table-responsive-sm">
