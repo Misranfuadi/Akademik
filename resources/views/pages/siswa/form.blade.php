@@ -1,8 +1,8 @@
- @if (isset($siswa))
+@if (isset($siswa))
     {!! Form::hidden('id',$siswa->id) !!}
- @endif
+@endif
 
- <div class="form-group row">
+<div class="form-group row">
     {!! Form::label ('nisn','NISN',['class'=>'col-sm-2 col-form-label']) !!}
     <div class="col-sm-10">
         {!! Form::text ('nisn', null,['class'=>'form-control ']) !!}

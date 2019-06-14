@@ -3,6 +3,9 @@
 <head>
     <title>Akademik</title>
     <link rel="stylesheet" href="{{ asset('bootstrap_4_3_1/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('fontawesome_5_9_0/css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('fontawesome_5_9_0/css/brands.css') }}">
+    <link rel="stylesheet" href="{{ asset('fontawesome_5_9_0/css/solid.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 </head>

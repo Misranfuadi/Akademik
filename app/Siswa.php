@@ -8,15 +8,15 @@ class Siswa extends Model
 {
     protected $table = 'siswa';
 
-    protected $fillable =[
-      'nisn',
-      'nama_siswa',
-      'tanggal_lahir',
-      'jenis_kelamin',
-      'id_kelas',
-      'foto',
+    protected $fillable = [
+        'nisn',
+        'nama_siswa',
+        'tanggal_lahir',
+        'jenis_kelamin',
+        'id_kelas',
+        'foto',
     ];
-    protected $dates=['tanggal_lahir'];
+    protected $dates = ['tanggal_lahir'];
 
     public function getNamaSiswaAttribute($nama_siswa)
     {
@@ -30,7 +30,7 @@ class Siswa extends Model
 
     public function telepon()
     {
-        return $this->hasOne('App\Telepon','id_siswa');
+        return $this->hasOne('App\Telepon', 'id_siswa');
     }
 
     public function kelas()
@@ -40,6 +40,16 @@ class Siswa extends Model
 
     public function hobi()
     {
-        return $this->belongsToMany('App\Hobi','hobi_siswa','id_siswa','id_hobi')->withTimeStamps();
+        return $this->belongsToMany('App\Hobi', 'hobi_siswa', 'id_siswa', 'id_hobi')->withTimeStamps();
+    }
+
+    public function scopeKelas($query, $id_kelas)
+    {
+        return $query->where('id_kelas', $id_kelas);
+    }
+
+    public function scopeJenisKelamin($query, $jenis_kelamin)
+    {
+        return $query->where('jenis_kelamin', $jenis_kelamin);
     }
 }

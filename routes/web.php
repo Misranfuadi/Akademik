@@ -15,5 +15,7 @@ Route::get('/', 'PagesController@homepage');
 Route::get('about', 'PagesController@about');
 
 Route::group(['mileware' => 'web'], function () {
-    Route::resource('siswa','SiswaController');
+    Route::get('siswa/cari', 'SiswaController@cari');
+    Route::resource('siswa', 'SiswaController');
+    Route::resource('kelas', 'KelasController');
 });
