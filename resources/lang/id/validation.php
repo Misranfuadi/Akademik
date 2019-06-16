@@ -148,7 +148,8 @@ return [
         'nama_siswa' => 'Nama',
         'tanggal_lahir' => 'Tanggal Lahir',
         'jenis_kelamin' => 'Jenis Kelamin',
-        'id_kelas' => 'Kelas'
+        'id_kelas' => 'Kelas',
+        'nama_kelas' => 'Nama Kelas',
 
     ],
 ];
