@@ -37,6 +37,9 @@ class AppServiceProvider extends ServiceProvider
         if (Request::segment(1) == 'about') {
             $halaman = 'about';
         }
+        if (Request::segment(1) == 'user') {
+            $halaman = 'user';
+        }
         view()->share('halaman', $halaman);
     }
 }

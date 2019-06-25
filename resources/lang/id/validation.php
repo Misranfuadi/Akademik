@@ -144,13 +144,22 @@ return [
     */
 
     'attributes' => [
+        //siswa
         'nisn' => 'NISN',
         'nama_siswa' => 'Nama',
         'tanggal_lahir' => 'Tanggal Lahir',
         'jenis_kelamin' => 'Jenis Kelamin',
         'id_kelas' => 'Kelas',
+        //kelas
         'nama_kelas' => 'Nama Kelas',
+        //hobi
         'nama_hobi' => 'Nama Hobi',
+        //users
+        'nama' => 'Nama',
+        'email' => 'Email',
+        'level' => 'Level',
+        'password' => 'Password',
+
 
     ],
 ];

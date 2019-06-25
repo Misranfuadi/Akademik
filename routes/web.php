@@ -21,10 +21,14 @@ PUT/PATCH   /resource/{resource}	    update	    resource.update
 DELETE	    /resource/{resource}	    destroy	    resource.destroy
 */
 
-Route::get('/', 'PagesController@homepage');
-Route::get('about', 'PagesController@about');
+
 
 Route::group(['mileware' => 'web'], function () {
+    Route::get('/', 'PagesController@homepage');
+    Route::get('about', 'PagesController@about');
+    //Route Auth
+    Auth::routes();
+    Route::get('/home', 'HomeController@index')->name('home');
     //Route Siswa
     Route::get('siswa/cari', 'SiswaController@cari');
     Route::resource('siswa', 'SiswaController');
@@ -37,4 +41,6 @@ Route::group(['mileware' => 'web'], function () {
     Route::delete('kelas/{kelas}', 'KelasController@destroy');
     //Route Hobi
     Route::resource('hobi', 'HobiController');
+    //Route user
+    Route::resource('user', 'UserController');
 });
