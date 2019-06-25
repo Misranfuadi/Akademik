@@ -25,8 +25,10 @@ class RouteServiceProvider extends ServiceProvider
     {
         //
         parent::boot();
+        //Model bindding
         Route::model('siswa', 'App\Siswa');
         Route::model('kelas', 'App\Kelas');
+        Route::model('hobi', 'App\Hobi');
     }
 
     /**

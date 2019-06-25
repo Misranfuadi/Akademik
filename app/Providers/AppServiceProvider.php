@@ -31,6 +31,9 @@ class AppServiceProvider extends ServiceProvider
         if (Request::segment(1) == 'kelas') {
             $halaman = 'kelas';
         }
+        if (Request::segment(1) == 'hobi') {
+            $halaman = 'hobi';
+        }
         if (Request::segment(1) == 'about') {
             $halaman = 'about';
         }

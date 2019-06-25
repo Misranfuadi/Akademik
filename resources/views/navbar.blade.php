@@ -1,44 +1,55 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="{{ url('/') }}">Akademik</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <a class="navbar-brand" href="{{ url('/') }}">Akademik</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      @if (!empty($halaman)&& $halaman == 'siswa')
-      <li class="nav-item active">
-        <a class="nav-link" href="{{ url('siswa') }}">Siswa
-        <span class="sr-only">(current)</span></a>
-      </li>
-      @else
-      <li class="nav-item">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        @if (!empty($halaman)&& $halaman == 'siswa')
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ url('siswa') }}">Siswa
+            <span class="sr-only">(current)</span></a>
+        </li>
+        @else
+        <li class="nav-item">
             <a class="nav-link" href="{{ url('siswa') }}">Siswa</a>
-      </li>
-      @endif
-      @if (!empty($halaman)&& $halaman == 'kelas')
-      <li class="nav-item active">
-        <a class="nav-link" href="{{ url('kelas') }}">Kelas
-        <span class="sr-only">(current)</span></a>
-      </li>
-      @else
-      <li class="nav-item">
+        </li>
+        @endif
+        @if (!empty($halaman)&& $halaman == 'kelas')
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ url('kelas') }}">Kelas
+            <span class="sr-only">(current)</span></a>
+        </li>
+        @else
+        <li class="nav-item">
             <a class="nav-link" href="{{ url('kelas') }}">Kelas</a>
-      </li>
-      @endif
-      @if (!empty($halaman)&& $halaman == 'about')
-      <li class="nav-item active">
-        <a class="nav-link" href="{{ url('about') }}">About
-        <span class="sr-only">(current)</span></a>
-      </li>
-      @else
-      <li class="nav-item">
+        </li>
+        @endif
+        @if (!empty($halaman)&& $halaman =='hobi')
+        <li class="nav-item active">
+            <a  class="nav-link"    href="{{ url('hobi') }}">Hobi
+                <span class="sr-only">(current)</span>
+            </a>
+        </li>
+        @else
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('hobi') }}">Hobi</a>
+        </li>
+        @endif
+        @if (!empty($halaman)&& $halaman == 'about')
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ url('about') }}">About
+            <span class="sr-only">(current)</span></a>
+        </li>
+        @else
+        <li class="nav-item">
             <a class="nav-link" href="{{ url('about') }}">About</a>
-      </li>
-      @endif
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Login</button>
-    </form>
-  </div>
+        </li>
+        @endif
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Login</button>
+        </form>
+    </div>
 </nav>

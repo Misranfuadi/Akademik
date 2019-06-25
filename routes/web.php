@@ -35,4 +35,6 @@ Route::group(['mileware' => 'web'], function () {
     Route::get('kelas/{kelas}/edit', 'KelasController@edit');
     Route::patch('kelas/{kelas}', 'KelasController@update');
     Route::delete('kelas/{kelas}', 'KelasController@destroy');
+    //Route Hobi
+    Route::resource('hobi', 'HobiController');
 });

@@ -150,6 +150,7 @@ return [
         'jenis_kelamin' => 'Jenis Kelamin',
         'id_kelas' => 'Kelas',
         'nama_kelas' => 'Nama Kelas',
+        'nama_hobi' => 'Nama Hobi',
 
     ],
 ];
