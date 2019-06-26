@@ -16,26 +16,30 @@
                 <a class="nav-link" href="{{ url('siswa') }}">Siswa</a>
             </li>
             @endif
-            @if (!empty($halaman)&& $halaman == 'kelas')
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ url('kelas') }}">Kelas
-                <span class="sr-only">(current)</span></a>
-            </li>
-            @else
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('kelas') }}">Kelas</a>
-            </li>
+            @if (Auth::check())
+                @if (!empty($halaman)&& $halaman == 'kelas')
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url('kelas') }}">Kelas
+                    <span class="sr-only">(current)</span></a>
+                </li>
+                @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('kelas') }}">Kelas</a>
+                </li>
+                @endif
             @endif
-            @if (!empty($halaman)&& $halaman =='hobi')
-            <li class="nav-item active">
-                <a  class="nav-link"    href="{{ url('hobi') }}">Hobi
-                    <span class="sr-only">(current)</span>
-                </a>
-            </li>
-            @else
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('hobi') }}">Hobi</a>
-            </li>
+            @if (Auth::check())
+                @if (!empty($halaman)&& $halaman =='hobi')
+                <li class="nav-item active">
+                    <a  class="nav-link"    href="{{ url('hobi') }}">Hobi
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('hobi') }}">Hobi</a>
+                </li>
+                @endif
             @endif
             @if (!empty($halaman)&& $halaman == 'about')
             <li class="nav-item active">
@@ -47,15 +51,17 @@
                 <a class="nav-link" href="{{ url('about') }}">About</a>
             </li>
             @endif
-            @if (!empty($halaman)&& $halaman == 'user')
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ url('user') }}">User
-                <span class="sr-only">(current)</span></a>
-            </li>
-            @else
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('user') }}">User</a>
-            </li>
+            @if (Auth::check()&& Auth::user()->level == 'admin')
+                @if (!empty($halaman)&& $halaman == 'user')
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url('user') }}">User
+                    <span class="sr-only">(current)</span></a>
+                </li>
+                @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('user') }}">User</a>
+                </li>
+                @endif
             @endif
         </ul>
         <ul class="nav navbar-nav navbar-right">

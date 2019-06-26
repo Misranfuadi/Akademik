@@ -141,4 +141,9 @@ class SiswaController extends Controller
         Session::flash('penting', true);
         return redirect('siswa');
     }
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show', 'cari']]);
+    }
 }

@@ -39,7 +39,9 @@
                                             <th>Tgl Lahir</th>
                                             <th>Gender</th>
                                             <th>Telepon</th>
+                                            @if(Auth::check())
                                             <th>{{ link_to('siswa/create','Tambah',['class'=>'btn btn-primary btn-sm']) }}</th>
+                                            @endif
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -53,6 +55,7 @@
                                             <td>{{ $siswa->jenis_kelamin }}</td>
                                             <td>{{ !empty($siswa->telepon->nomor_telepon) ? $siswa->telepon->nomor_telepon: '-' }}</td>
                                             <td>
+                                                @if(Auth::check())
                                                 <div class="box-button">
                                                     {{ link_to('siswa/'.$siswa->id,'Detail',['class'=>'btn btn-info btn-sm']) }}
                                                 </div>
@@ -64,6 +67,7 @@
                                                     {!! Form::submit('Delete',['class'=> 'btn btn-danger btn-sm']) !!}
                                                     {!! Form::close() !!}
                                                 </div>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
