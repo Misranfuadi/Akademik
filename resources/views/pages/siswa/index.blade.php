@@ -54,8 +54,8 @@
                                             <td>{{ $siswa->tanggal_lahir->format('d-m-Y') }}</td>
                                             <td>{{ $siswa->jenis_kelamin }}</td>
                                             <td>{{ !empty($siswa->telepon->nomor_telepon) ? $siswa->telepon->nomor_telepon: '-' }}</td>
+                                            @if(Auth::check())
                                             <td>
-                                                @if(Auth::check())
                                                 <div class="box-button">
                                                     {{ link_to('siswa/'.$siswa->id,'Detail',['class'=>'btn btn-info btn-sm']) }}
                                                 </div>
@@ -67,8 +67,8 @@
                                                     {!! Form::submit('Delete',['class'=> 'btn btn-danger btn-sm']) !!}
                                                     {!! Form::close() !!}
                                                 </div>
-                                                @endif
                                             </td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                     @else
