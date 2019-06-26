@@ -28,7 +28,9 @@ Route::group(['mileware' => 'web'], function () {
     Route::get('about', 'PagesController@about');
     //Route Auth
     Auth::routes();
+    Route::get('logout', 'Auth\LoginController@logout');
     Route::get('/home', 'PagesController@homepage')->name('home');
+
     //Route Siswa
     Route::get('siswa/cari', 'SiswaController@cari');
     Route::resource('siswa', 'SiswaController');
