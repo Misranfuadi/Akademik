@@ -41,16 +41,6 @@
                 </li>
                 @endif
             @endif
-            @if (!empty($halaman)&& $halaman == 'about')
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ url('about') }}">About
-                <span class="sr-only">(current)</span></a>
-            </li>
-            @else
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('about') }}">About</a>
-            </li>
-            @endif
             @if (Auth::check()&& Auth::user()->level == 'admin')
                 @if (!empty($halaman)&& $halaman == 'user')
                 <li class="nav-item active">
@@ -62,6 +52,16 @@
                     <a class="nav-link" href="{{ url('user') }}">User</a>
                 </li>
                 @endif
+            @endif
+            @if (!empty($halaman)&& $halaman == 'about')
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url('about') }}">About
+                <span class="sr-only">(current)</span></a>
+            </li>
+            @else
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('about') }}">About</a>
+            </li>
             @endif
         </ul>
         <ul class="nav navbar-nav navbar-right">
